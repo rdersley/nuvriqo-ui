@@ -69,6 +69,7 @@ function parse(c) {
 
 const TEXT = { brand: 'text-brand', success: 'text-success', danger: 'text-danger', warning: 'text-warning', discovery: 'text-discovery' };
 const BG_LIGHT = { brand: 'bg-selected', success: 'bg-success', danger: 'bg-danger', warning: 'bg-warning', discovery: 'bg-discovery' };
+const BG_SUBTLER = { brand: 'bg-information-subtler', success: 'bg-success-subtler', danger: 'bg-danger-subtler', warning: 'bg-warning-subtler', discovery: 'bg-discovery-subtler' };
 const BG_BOLD = { brand: 'bg-brand', success: 'bg-success-bold', danger: 'bg-danger-bold', warning: 'bg-warning-bold' };
 const BORDER = { brand: 'border-brand', success: 'border-success', danger: 'border-danger', warning: 'border-warning', discovery: 'border-information' };
 
@@ -83,7 +84,9 @@ function tokenFor(kind, colour) {
   if (kind === 'bg') {
     if (c.a < 1) return c.l < 0.3 && c.a >= 0.3 ? 'blanket' : c.white && c.a >= 0.9 ? 'surface-raised' : null;
     if (c.family === 'neutral') return c.l >= 0.995 ? 'surface-raised' : c.l >= 0.965 ? 'surface-sunken' : c.l >= 0.85 ? 'bg-neutral' : null;
-    if (c.l >= 0.85) return c.family === 'brand' && c.l >= 0.975 ? 'surface-sunken' : BG_LIGHT[c.family];
+    // Pastels near white are page/card tints; mid pastels (icon circles, badges) are one step stronger.
+    if (c.l >= 0.9) return c.family === 'brand' && c.l >= 0.975 ? 'surface-sunken' : BG_LIGHT[c.family];
+    if (c.l >= 0.7) return BG_SUBTLER[c.family];
     return BG_BOLD[c.family] || null;
   }
   if (kind === 'border') {

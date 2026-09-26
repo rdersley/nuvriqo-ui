@@ -43,6 +43,11 @@ html[data-color-mode="dark"] {
   --ds-background-information: #092957;
   --ds-background-discovery: #352c63;
   --ds-skeleton: #a1bdd914;
+  --ds-background-accent-green-subtler: #1c3329;
+  --ds-background-accent-red-subtler: #42221f;
+  --ds-background-accent-yellow-subtler: #332e1b;
+  --ds-background-accent-blue-subtler: #1c2b41;
+  --ds-background-accent-purple-subtler: #2b273f;
   --ds-border: #a6c5e229;
   --ds-border-bold: #738496;
   --ds-border-input: #738496;

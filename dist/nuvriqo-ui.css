@@ -1,4 +1,4 @@
-/*! @nuvriqo/ui v0.1.0 — generated from src/css, do not edit */
+/*! @nuvriqo/ui v0.2.0 — generated from src/css, do not edit */
 /*
  * Nuvriqo UI — semantic tokens.
  *
@@ -61,6 +61,12 @@
   --nq-bg-warning-bold: var(--ds-background-warning-bold, #f5cd47);
   --nq-bg-information: var(--ds-background-information, #e9f2ff);
   --nq-bg-discovery: var(--ds-background-discovery, #f3f0ff);
+  /* One step stronger than the backgrounds above: icon circles and badges on a tinted card. */
+  --nq-bg-success-subtler: var(--ds-background-accent-green-subtler, #baf3db);
+  --nq-bg-danger-subtler: var(--ds-background-accent-red-subtler, #ffd5d2);
+  --nq-bg-warning-subtler: var(--ds-background-accent-yellow-subtler, #f8e6a0);
+  --nq-bg-information-subtler: var(--ds-background-accent-blue-subtler, #cce0ff);
+  --nq-bg-discovery-subtler: var(--ds-background-accent-purple-subtler, #dfd8fd);
   --nq-skeleton: var(--ds-skeleton, #091e420f);
 
   /* Borders */
