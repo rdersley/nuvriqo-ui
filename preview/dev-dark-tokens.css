@@ -1,0 +1,59 @@
+/*
+ * DEV ONLY. Approximates the Atlassian dark-mode --ds-* values so the preview
+ * page and local harnesses can show dark mode without Forge. Never ship this
+ * in an app: in Jira, view.theme.enable() injects the real tokens.
+ */
+html[data-color-mode="dark"] {
+  --ds-text: #b6c2cf;
+  --ds-text-subtle: #9fadbc;
+  --ds-text-subtlest: #8c9bab;
+  --ds-text-disabled: #bfdbf847;
+  --ds-text-inverse: #1d2125;
+  --ds-text-brand: #579dff;
+  --ds-text-selected: #579dff;
+  --ds-text-success: #7ee2b8;
+  --ds-text-danger: #fd9891;
+  --ds-text-warning: #fec195;
+  --ds-text-information: #85b8ff;
+  --ds-text-discovery: #b8acf6;
+  --ds-link: #579dff;
+  --ds-link-pressed: #85b8ff;
+  --ds-surface: #1d2125;
+  --ds-surface-sunken: #161a1d;
+  --ds-surface-raised: #22272b;
+  --ds-surface-overlay: #282e33;
+  --ds-surface-hovered: #22272b;
+  --ds-blanket: #10121499;
+  --ds-background-neutral: #a1bdd914;
+  --ds-background-neutral-hovered: #a6c5e229;
+  --ds-background-neutral-subtle-hovered: #a1bdd914;
+  --ds-background-input: #22272b;
+  --ds-background-disabled: #bcd6f00a;
+  --ds-background-selected: #1c2b41;
+  --ds-background-brand-bold: #579dff;
+  --ds-background-brand-bold-hovered: #85b8ff;
+  --ds-background-brand-bold-pressed: #cce0ff;
+  --ds-background-success: #164b35;
+  --ds-background-success-bold: #4bce97;
+  --ds-background-danger: #5d1f1a;
+  --ds-background-danger-bold: #f87168;
+  --ds-background-danger-bold-hovered: #fd9891;
+  --ds-background-warning: #533f04;
+  --ds-background-warning-bold: #f5cd47;
+  --ds-background-information: #092957;
+  --ds-background-discovery: #352c63;
+  --ds-skeleton: #a1bdd914;
+  --ds-border: #a6c5e229;
+  --ds-border-bold: #738496;
+  --ds-border-input: #738496;
+  --ds-border-focused: #85b8ff;
+  --ds-border-brand: #579dff;
+  --ds-border-success: #4bce97;
+  --ds-border-danger: #f87168;
+  --ds-border-warning: #f38a3f;
+  --ds-border-information: #579dff;
+  --ds-icon: #9fadbc;
+  --ds-icon-subtle: #8c9bab;
+  --ds-shadow-raised: 0 1px 1px #03040480, 0 0 1px #03040480;
+  --ds-shadow-overlay: 0 0 0 1px #bcd6f01f, 0 8px 12px #0304045c, 0 0 1px #03040480;
+}

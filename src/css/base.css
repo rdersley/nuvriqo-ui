@@ -1,0 +1,71 @@
+/* Nuvriqo UI — base element styles. Scoped to .nq-app so they never leak into host pages. */
+.nq-app {
+  font-family: var(--nq-font);
+  font-size: var(--nq-font-size);
+  line-height: var(--nq-line-height);
+  color: var(--nq-text);
+  background: var(--nq-surface);
+  -webkit-font-smoothing: antialiased;
+}
+.nq-app *,
+.nq-app *::before,
+.nq-app *::after {
+  box-sizing: border-box;
+}
+.nq-app [hidden] {
+  display: none !important;
+}
+.nq-app h1,
+.nq-app h2,
+.nq-app h3,
+.nq-app h4 {
+  color: var(--nq-text);
+  margin: 0;
+  line-height: 1.25;
+}
+.nq-app h1 { font-size: 24px; font-weight: 653; }
+.nq-app h2 { font-size: 16px; font-weight: 653; }
+.nq-app h3 { font-size: 14px; font-weight: 653; }
+.nq-app h4 { font-size: 12px; font-weight: 653; }
+.nq-app p { margin: 0; }
+.nq-app a { color: var(--nq-link); text-decoration: none; }
+.nq-app a:hover { text-decoration: underline; }
+.nq-app a:active { color: var(--nq-link-pressed); }
+.nq-app button,
+.nq-app input,
+.nq-app select,
+.nq-app textarea {
+  font: inherit;
+  color: inherit;
+}
+.nq-app code {
+  font-family: var(--nq-font-mono);
+  font-size: 0.92em;
+  background: var(--nq-bg-neutral);
+  border-radius: var(--nq-radius-sm);
+  padding: 1px 4px;
+}
+.nq-app :focus-visible {
+  outline: 2px solid var(--nq-border-focused);
+  outline-offset: 2px;
+}
+
+/* Utilities */
+.nq-muted { color: var(--nq-text-subtlest); font-size: var(--nq-font-size-sm); }
+.nq-subtle { color: var(--nq-text-subtle); }
+.nq-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.nq-stack { display: flex; flex-direction: column; gap: var(--nq-space-150); }
+.nq-inline { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nq-space-100); }
+.nq-spread { display: flex; align-items: center; justify-content: space-between; gap: var(--nq-space-200); }
+.nq-grid { display: grid; gap: var(--nq-space-200); }
+.nq-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.nq-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.nq-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 720px) {
+  .nq-grid--2,
+  .nq-grid--3,
+  .nq-grid--4 { grid-template-columns: minmax(0, 1fr); }
+}
