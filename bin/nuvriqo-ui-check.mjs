@@ -7,7 +7,8 @@
 //   nuvriqo-ui-check --report static                               # never fail
 //
 // Intentional brand colours (e.g. a white-label gradient) can be listed in
-// nuvriqo-ui.json at the app root: { "allowColors": ["#0b3d6b"], "ignore": ["vendor.css"] }
+// nuvriqo-ui.json at the app root:
+//   { "allowColors": ["#0b3d6b"], "keepSelectors": [".topbar"], "ignore": ["vendor.css"] }
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -25,8 +26,11 @@ if (!dirs.length) dirs.push('.');
 const config = fs.existsSync('nuvriqo-ui.json') ? JSON.parse(fs.readFileSync('nuvriqo-ui.json', 'utf8')) : {};
 const allow = new Set((config.allowColors || []).map((c) => c.toLowerCase().replace(/\s+/g, '')));
 const ignore = (config.ignore || []).concat(['nuvriqo-ui.css', 'node_modules']);
+const keepSelectors = config.keepSelectors || [];
 
-const COLOR = /#[0-9a-f]{3,8}\b|\b(?:rgba?|hsla?)\([^)]*\)/gi;
+const COLOR = /#[0-9a-f]{3,8}\b|\b(?:rgba?|hsla?)\([^)]*\)|(?<![-\w])(?:white|black)(?![-\w])/gi;
+const FIXED_BG = /background(?:-color)?:[^;}]*var\(--(?!nq-)/;
+const WHITE_TEXT = /((?:^|;)\s*color:\s*)(?:#fff\b|#ffffff\b|white\b)/gi;
 
 /** Remove every var(...) including nested parens, so fallbacks don't count. */
 function stripVars(css) {
@@ -55,7 +59,13 @@ function walk(target, files = []) {
 const found = [];
 for (const dir of dirs) {
   for (const file of walk(dir)) {
-    const css = stripVars(fs.readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, ''));
+    const raw = fs.readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/([^{}]*)\{([^{}]*)\}/g, (block, selector, body) => {
+        if (keepSelectors.some((s) => selector.includes(s))) return '';
+        // White text on a fixed (non-token) background, e.g. a customer accent, is intended.
+        return FIXED_BG.test(body) ? block.replace(WHITE_TEXT, '$1inherit') : block;
+      });
+    const css = stripVars(raw);
     for (const match of css.match(COLOR) || []) {
       const colour = match.toLowerCase().replace(/\s+/g, '');
       if (!allow.has(colour)) found.push({ file, colour });

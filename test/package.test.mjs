@@ -41,11 +41,11 @@ test('html helpers escape text', () => {
 test('checker flags raw colours but not var() fallbacks', () => {
   const dir = fs.mkdtempSync('test/tmp-');
   try {
-    fs.writeFileSync(`${dir}/a.css`, '.a{color:var(--nq-text,#172b4d)}.b{background:#fff;border:1px solid rgba(0,0,0,.1)}');
+    fs.writeFileSync(`${dir}/a.css`, '.a{color:var(--nq-text,#172b4d)}.b{background:#fff;border:1px solid rgba(0,0,0,.1);white-space:nowrap}.c{background:color-mix(in srgb,red 8%,white)}');
     let failed = false;
     let out = '';
     try { execFileSync(process.execPath, ['bin/nuvriqo-ui-check.mjs', dir], { encoding: 'utf8' }); } catch (err) { failed = true; out = err.stdout; }
     assert.ok(failed);
-    assert.match(out, /2 hardcoded/);
+    assert.match(out, /3 hardcoded/);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });

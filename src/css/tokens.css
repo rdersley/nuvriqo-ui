@@ -95,12 +95,19 @@
   --nq-page-width-narrow: 760px;
 
   /*
-   * Nuvriqo accent: the "N" mark only. It is the one intentionally fixed
-   * colour — the rest of the app stays on Atlassian tokens.
+   * Nuvriqo accent: the "N" mark only. These and --nq-accent-default are the
+   * only fixed colours — the rest of the app stays on Atlassian tokens.
    */
   --nq-mark-from: #58b6ff;
   --nq-mark-to: #1175d5;
   --nq-mark-text: #ffffff;
+
+  /*
+   * Default for customer-chosen accents (white-label surfaces, e.g. Portal+
+   * --brand). Fixed like a customer colour, so white text on it stays legible
+   * in dark mode. Not for general UI — use --nq-bg-brand there.
+   */
+  --nq-accent-default: #0c66e4;
 }
 
 html[data-color-mode="dark"] {

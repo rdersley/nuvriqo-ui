@@ -15,7 +15,8 @@
   },
   "bin": {
     "nuvriqo-ui-copy": "bin/nuvriqo-ui-copy.mjs",
-    "nuvriqo-ui-check": "bin/nuvriqo-ui-check.mjs"
+    "nuvriqo-ui-check": "bin/nuvriqo-ui-check.mjs",
+    "nuvriqo-ui-migrate": "bin/nuvriqo-ui-migrate.mjs"
   },
   "files": [
     "bin",

@@ -96,19 +96,30 @@
   --nq-page-width-narrow: 760px;
 
   /*
-   * Nuvriqo accent: the "N" mark only. It is the one intentionally fixed
-   * colour — the rest of the app stays on Atlassian tokens.
+   * Nuvriqo accent: the "N" mark only. These and --nq-accent-default are the
+   * only fixed colours — the rest of the app stays on Atlassian tokens.
    */
   --nq-mark-from: #58b6ff;
   --nq-mark-to: #1175d5;
   --nq-mark-text: #ffffff;
+
+  /*
+   * Default for customer-chosen accents (white-label surfaces, e.g. Portal+
+   * --brand). Fixed like a customer colour, so white text on it stays legible
+   * in dark mode. Not for general UI — use --nq-bg-brand there.
+   */
+  --nq-accent-default: #0c66e4;
 }
 
 html[data-color-mode="dark"] {
   color-scheme: dark;
 }
 
-/* Nuvriqo UI — base element styles. Scoped to .nq-app so they never leak into host pages. */
+/*
+ * Nuvriqo UI — base element styles. Scoped to .nq-app so they never leak into
+ * host pages, and wrapped in :where() so they have zero specificity: any app
+ * rule (even a bare class) overrides them.
+ */
 .nq-app {
   font-family: var(--nq-font);
   font-size: var(--nq-font-size);
@@ -117,45 +128,39 @@ html[data-color-mode="dark"] {
   background: var(--nq-surface);
   -webkit-font-smoothing: antialiased;
 }
-.nq-app *,
-.nq-app *::before,
-.nq-app *::after {
+:where(.nq-app) *,
+:where(.nq-app) *::before,
+:where(.nq-app) *::after {
   box-sizing: border-box;
 }
-.nq-app [hidden] {
+:where(.nq-app) [hidden] {
   display: none !important;
 }
-.nq-app h1,
-.nq-app h2,
-.nq-app h3,
-.nq-app h4 {
+:where(.nq-app) :where(h1, h2, h3, h4) {
   color: var(--nq-text);
   margin: 0;
   line-height: 1.25;
 }
-.nq-app h1 { font-size: 24px; font-weight: 653; }
-.nq-app h2 { font-size: 16px; font-weight: 653; }
-.nq-app h3 { font-size: 14px; font-weight: 653; }
-.nq-app h4 { font-size: 12px; font-weight: 653; }
-.nq-app p { margin: 0; }
-.nq-app a { color: var(--nq-link); text-decoration: none; }
-.nq-app a:hover { text-decoration: underline; }
-.nq-app a:active { color: var(--nq-link-pressed); }
-.nq-app button,
-.nq-app input,
-.nq-app select,
-.nq-app textarea {
+:where(.nq-app) :where(h1) { font-size: 24px; font-weight: 653; }
+:where(.nq-app) :where(h2) { font-size: 16px; font-weight: 653; }
+:where(.nq-app) :where(h3) { font-size: 14px; font-weight: 653; }
+:where(.nq-app) :where(h4) { font-size: 12px; font-weight: 653; }
+:where(.nq-app) :where(p) { margin: 0; }
+:where(.nq-app) :where(a) { color: var(--nq-link); text-decoration: none; }
+:where(.nq-app) :where(a:hover) { text-decoration: underline; }
+:where(.nq-app) :where(a:active) { color: var(--nq-link-pressed); }
+:where(.nq-app) :where(button, input, select, textarea) {
   font: inherit;
   color: inherit;
 }
-.nq-app code {
+:where(.nq-app) :where(code) {
   font-family: var(--nq-font-mono);
   font-size: 0.92em;
   background: var(--nq-bg-neutral);
   border-radius: var(--nq-radius-sm);
   padding: 1px 4px;
 }
-.nq-app :focus-visible {
+:where(.nq-app) :focus-visible {
   outline: 2px solid var(--nq-border-focused);
   outline-offset: 2px;
 }
