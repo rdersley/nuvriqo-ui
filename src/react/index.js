@@ -11,10 +11,10 @@ const h = React.createElement;
 const cx = (...parts) => parts.filter(Boolean).join(' ');
 const bareVersion = (v) => String(v).replace(/^v/, '');
 
-export function AppHeader({ product, subtitle, version, actions, compact = false }) {
+export function AppHeader({ product, subtitle, version, actions, compact = false, icon = 'N' }) {
   return h('header', { className: cx('nq-header', compact && 'nq-header--compact') },
     h('div', { className: 'nq-header__brand' },
-      h('span', { className: 'nq-mark', 'aria-hidden': true }, 'N'),
+      h('span', { className: 'nq-mark', 'aria-hidden': true }, icon),
       h('div', { className: 'nq-header__text' },
         h('span', { className: 'nq-eyebrow' }, 'Nuvriqo'),
         h('h1', { className: 'nq-header__title' }, product),
@@ -101,4 +101,35 @@ export function Footer({ product, version }) {
     h('span', null, `Nuvriqo ${product}`),
     version ? h('span', { 'aria-hidden': true }, '·') : null,
     version ? h('span', null, `v${bareVersion(version)}`) : null);
+}
+
+/** Full-page layout with sidebar (jira:globalPage). */
+export function AppShell({ sidebar, children }) {
+  return h('div', { className: 'nq-shell' }, sidebar, h('main', { className: 'nq-main' }, children));
+}
+
+/** items = [{ id, label, icon }] */
+export function Sidebar({ product, items, active, onChange, bottom }) {
+  return h('aside', { className: 'nq-sidebar' },
+    h('div', { className: 'nq-brand' },
+      h('span', { className: 'nq-mark', 'aria-hidden': true }, 'N'),
+      h('div', null,
+        h('strong', { className: 'nq-brand__name' }, 'Nuvriqo'),
+        h('small', { className: 'nq-brand__product' }, product))),
+    h('nav', { className: 'nq-nav' },
+      items.map(({ id, label, icon }) => h('button', {
+        key: id, type: 'button', className: 'nq-nav-item',
+        'aria-current': id === active ? 'page' : undefined, onClick: () => onChange && onChange(id),
+      }, icon ? h('span', { className: 'nq-nav-item__icon', 'aria-hidden': true }, icon) : null, h('span', null, label)))),
+    bottom ? h('div', { className: 'nq-sidebar__bottom' }, bottom) : null);
+}
+
+/** kind: 'info' | 'success' | 'warning' | 'danger' */
+export function Kpi({ label, value, hint, icon, kind = 'info' }) {
+  return h('div', { className: 'nq-kpi' },
+    icon ? h('span', { className: cx('nq-kpi__icon', kind !== 'info' && `nq-kpi__icon--${kind}`), 'aria-hidden': true }, icon) : null,
+    h('div', null,
+      h('small', { className: 'nq-kpi__label' }, label),
+      h('strong', { className: 'nq-kpi__value' }, value),
+      hint ? h('em', { className: 'nq-kpi__hint' }, hint) : null));
 }

@@ -8,7 +8,7 @@
   font-size: var(--nq-font-size);
   line-height: var(--nq-line-height);
   color: var(--nq-text);
-  background: var(--nq-surface);
+  background: var(--nq-surface-sunken);
   -webkit-font-smoothing: antialiased;
 }
 :where(.nq-app) *,
@@ -24,10 +24,10 @@
   margin: 0;
   line-height: 1.25;
 }
-:where(.nq-app) :where(h1) { font-size: 24px; font-weight: 653; }
-:where(.nq-app) :where(h2) { font-size: 16px; font-weight: 653; }
-:where(.nq-app) :where(h3) { font-size: 14px; font-weight: 653; }
-:where(.nq-app) :where(h4) { font-size: 12px; font-weight: 653; }
+:where(.nq-app) :where(h1) { font-size: 30px; font-weight: 700; letter-spacing: -0.025em; }
+:where(.nq-app) :where(h2) { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+:where(.nq-app) :where(h3) { font-size: 15px; font-weight: 700; }
+:where(.nq-app) :where(h4) { font-size: 13px; font-weight: 700; }
 :where(.nq-app) :where(p) { margin: 0; }
 :where(.nq-app) :where(a) { color: var(--nq-link); text-decoration: none; }
 :where(.nq-app) :where(a:hover) { text-decoration: underline; }
@@ -44,8 +44,8 @@
   padding: 1px 4px;
 }
 :where(.nq-app) :focus-visible {
-  outline: 2px solid var(--nq-border-focused);
-  outline-offset: 2px;
+  outline: 3px solid var(--nq-focus-ring);
+  outline-offset: 1px;
 }
 
 /* Utilities */

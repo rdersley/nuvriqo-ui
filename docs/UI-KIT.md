@@ -4,9 +4,11 @@ UI Kit apps get Atlassian tokens and dark mode automatically. Consistency with t
 
 | Style-guide pattern | UI Kit |
 |---|---|
-| `nq-header` | `<Stack space="space.050">` containing `<Text size="small" weight="bold" color="color.text.subtlest">NUVRIQO</Text>`, `<Heading size="large">Product</Heading>`, `<Text color="color.text.subtle">subtitle</Text>`; version as `<Lozenge>` in an `<Inline spread="space-between">` |
+| `nq-header` | `<Stack space="space.050">` containing `<Text size="small" weight="bold" color="color.text.brand">NUVRIQO</Text>`, `<Heading size="large">Product</Heading>`, `<Text color="color.text.subtle">subtitle</Text>`; version as `<Lozenge>` in an `<Inline spread="space-between">` |
 | `nq-tabs` | `<Tabs><TabList><Tab>…` + `<TabPanel>` |
-| `nq-card` | `<Box xcss={card}>` with `card = xcss({ backgroundColor: 'elevation.surface.raised', boxShadow: 'elevation.shadow.raised', borderRadius: 'border.radius.200', padding: 'space.200' })` |
+| `nq-card` | `<Box xcss={card}>` with `card = xcss({ backgroundColor: 'elevation.surface.raised', boxShadow: 'elevation.shadow.raised', borderRadius: 'border.radius.400', padding: 'space.250' })` |
+| `nq-kpi` | `<Box xcss={card}>` > `<Inline space="space.150" alignBlock="center">` with an icon, `<Text size="small" weight="bold" color="color.text.subtlest">LABEL</Text>` and `<Heading size="large">value</Heading>` |
+| `nq-sidebar` | UI Kit pages can't draw a sidebar. Use `<Tabs>` |
 | `nq-notice--*` | `<SectionMessage appearance="success|warning|error|information|discovery" title="…">` |
 | `nq-lozenge--*` | `<Lozenge appearance="success|removed|moved|inprogress|new|default">` (danger→`removed`, warning→`moved`, info→`inprogress`, discovery→`new`) |
 | `nq-btn--primary / subtle / danger` | `<Button appearance="primary|subtle|danger">` |

@@ -1,6 +1,6 @@
 # @nuvriqo/ui
 
-This package gives every Nuvriqo Forge app the same shared look, layout and components. It is built on Atlassian design tokens, so apps look native in Jira and support dark mode.
+This package gives every Nuvriqo Forge app the same look, layout and components: the **Nuvriqo UI System v1** look, first built in Asset Manager. Colours come from Atlassian design tokens, so apps support Jira dark mode.
 
 - `dist/nuvriqo-ui.css`: tokens (`--nq-*` → `--ds-*`), base styles and components (`nq-*` classes).
 - `@nuvriqo/ui/theme`: `enableTheme(view)` turns on Jira light/dark theming.
@@ -14,7 +14,7 @@ This package gives every Nuvriqo Forge app the same shared look, layout and comp
 ## Install
 
 ```bash
-npm install github:rdersley/nuvriqo-ui#v0.1.0
+npm install github:rdersley/nuvriqo-ui#v0.3.0
 ```
 
 Pin a tag and bump it deliberately in each app. While developing the kit, use `npm install ../nuvriqo-ui` and switch back before committing.
@@ -27,7 +27,7 @@ Pin a tag and bump it deliberately in each app. While developing the kit, use `n
 import '@nuvriqo/ui/css';
 import { view } from '@forge/bridge';
 import { enableTheme } from '@nuvriqo/ui/theme';
-import { AppHeader, Card, Notice, Loading, EmptyState, Footer } from '@nuvriqo/ui/react';
+import { AppShell, Sidebar, AppHeader, Kpi, Card, Notice, Loading, EmptyState, Footer } from '@nuvriqo/ui/react';
 
 enableTheme(view);
 ```

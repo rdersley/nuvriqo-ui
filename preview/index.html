@@ -13,11 +13,23 @@
     .swatch span { display: block; padding: 4px 6px; color: var(--nq-text-subtle); font-family: var(--nq-font-mono); }
   </style>
 </head>
-<body class="nq-app" style="margin:0;background:var(--nq-surface-sunken)">
-<main class="nq-page">
+<body class="nq-app" style="margin:0">
+<div class="nq-shell">
+<aside class="nq-sidebar">
+  <div class="nq-brand"><span class="nq-mark" aria-hidden="true">N</span><div><strong class="nq-brand__name">Nuvriqo</strong><small class="nq-brand__product">Example Manager</small></div></div>
+  <nav class="nq-nav">
+    <button class="nq-nav-item" type="button" aria-current="page"><span class="nq-nav-item__icon" aria-hidden="true">▦</span><span>Dashboard</span></button>
+    <button class="nq-nav-item" type="button"><span class="nq-nav-item__icon" aria-hidden="true">☰</span><span>Records</span></button>
+    <button class="nq-nav-item" type="button"><span class="nq-nav-item__icon" aria-hidden="true">↥</span><span>Import</span></button>
+    <button class="nq-nav-item" type="button"><span class="nq-nav-item__icon" aria-hidden="true">◔</span><span>Reports</span></button>
+    <button class="nq-nav-item" type="button"><span class="nq-nav-item__icon" aria-hidden="true">⚙</span><span>Settings</span></button>
+  </nav>
+  <div class="nq-sidebar__bottom"><span>Sidebar layout: full-page apps (jira:globalPage). Settings pages use the tabs below instead.</span><span class="nq-muted">v1.4.0</span></div>
+</aside>
+<main class="nq-main">
   <header class="nq-header">
     <div class="nq-header__brand">
-      <span class="nq-mark" aria-hidden="true">N</span>
+      <span class="nq-mark" aria-hidden="true">▣</span>
       <div class="nq-header__text">
         <span class="nq-eyebrow">Nuvriqo</span>
         <h1 class="nq-header__title">Example Manager</h1>
@@ -42,6 +54,13 @@
   <div class="nq-notice nq-notice--error" role="alert"><div><strong class="nq-notice__title">Couldn’t load projects</strong>Jira returned 403. Check the app has access to this project.</div></div>
   <div class="nq-notice" role="status"><div>Info notice — neutral guidance or context.</div></div>
 
+  <div class="nq-kpis">
+    <div class="nq-kpi"><span class="nq-kpi__icon" aria-hidden="true">▦</span><div><small class="nq-kpi__label">Total assets</small><strong class="nq-kpi__value">1,284</strong><em class="nq-kpi__hint">Across 6 organisations</em></div></div>
+    <div class="nq-kpi"><span class="nq-kpi__icon nq-kpi__icon--success" aria-hidden="true">✓</span><div><small class="nq-kpi__label">In service</small><strong class="nq-kpi__value">1,102</strong><em class="nq-kpi__hint">86% of fleet</em></div></div>
+    <div class="nq-kpi"><span class="nq-kpi__icon nq-kpi__icon--warning" aria-hidden="true">!</span><div><small class="nq-kpi__label">Awaiting repair</small><strong class="nq-kpi__value">64</strong><em class="nq-kpi__hint">12 overdue</em></div></div>
+    <div class="nq-kpi"><span class="nq-kpi__icon nq-kpi__icon--danger" aria-hidden="true">×</span><div><small class="nq-kpi__label">Faulty</small><strong class="nq-kpi__value">18</strong><em class="nq-kpi__hint">This month</em></div></div>
+  </div>
+
   <section class="nq-card">
     <div class="nq-card__head">
       <div><h2 class="nq-card__title">Overview</h2><p class="nq-card__desc">Stat tiles for headline numbers.</p></div>
@@ -50,9 +69,9 @@
     <div class="nq-card__body">
       <div class="nq-stats">
         <div class="nq-stat"><strong class="nq-stat__value">128</strong><span class="nq-stat__label">Open requests</span></div>
-        <div class="nq-stat"><strong class="nq-stat__value">14</strong><span class="nq-stat__label">Awaiting approval</span></div>
-        <div class="nq-stat"><strong class="nq-stat__value">97%</strong><span class="nq-stat__label">SLA met</span></div>
-        <div class="nq-stat"><strong class="nq-stat__value">3</strong><span class="nq-stat__label">Breached</span></div>
+        <div class="nq-stat nq-stat--success"><strong class="nq-stat__value">14</strong><span class="nq-stat__label">Awaiting approval</span></div>
+        <div class="nq-stat nq-stat--info"><strong class="nq-stat__value">97%</strong><span class="nq-stat__label">SLA met</span></div>
+        <div class="nq-stat nq-stat--warning"><strong class="nq-stat__value">3</strong><span class="nq-stat__label">Breached</span></div>
       </div>
     </div>
   </section>
@@ -105,8 +124,8 @@
         <table class="nq-table">
           <thead><tr><th>Key</th><th>Summary</th><th>Status</th><th class="nq-table__actions">Actions</th></tr></thead>
           <tbody>
-            <tr><td><a href="#">SD-101</a></td><td>Printer offline in Dublin office</td><td><span class="nq-lozenge nq-lozenge--info">In progress</span></td><td class="nq-table__actions"><button class="nq-btn nq-btn--subtle nq-btn--small" type="button">Edit</button></td></tr>
-            <tr><td><a href="#">SD-102</a></td><td>New starter laptop</td><td><span class="nq-lozenge nq-lozenge--success">Done</span></td><td class="nq-table__actions"><button class="nq-btn nq-btn--subtle nq-btn--small" type="button">Edit</button></td></tr>
+            <tr><td><a class="nq-table__key" href="#">SD-101</a></td><td>Printer offline in Dublin office</td><td><span class="nq-lozenge nq-lozenge--info">In progress</span></td><td class="nq-table__actions"><button class="nq-btn nq-btn--subtle nq-btn--small" type="button">Edit</button></td></tr>
+            <tr><td><a class="nq-table__key" href="#">SD-102</a></td><td>New starter laptop</td><td><span class="nq-lozenge nq-lozenge--success">Done</span></td><td class="nq-table__actions"><button class="nq-btn nq-btn--subtle nq-btn--small" type="button">Edit</button></td></tr>
           </tbody>
         </table>
       </div>
@@ -135,6 +154,7 @@
 
   <footer class="nq-footer"><span>Nuvriqo Example Manager</span><span aria-hidden="true">·</span><span>v1.4.0</span></footer>
 </main>
+</div>
 <script>
   const names = ['text','text-subtle','text-subtlest','text-brand','surface','surface-sunken','surface-raised','bg-neutral','bg-selected','bg-brand','bg-success','bg-danger','bg-warning','bg-information','border','border-input','border-focused'];
   document.getElementById('swatches').innerHTML = names.map(n => `<div class="swatch"><i style="background:var(--nq-${n})"></i><span>--nq-${n}</span></div>`).join('');

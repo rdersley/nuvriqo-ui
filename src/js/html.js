@@ -18,10 +18,13 @@ export function escapeHtml(value) {
 
 const e = escapeHtml;
 
-/** Standard app header: [N] NUVRIQO / Product / subtitle ...... [version] [actions] */
-export function header({ product, subtitle = '', version = '', actionsHtml = '', compact = false } = {}) {
+/**
+ * Standard app header: [icon] NUVRIQO / Product / subtitle ...... [version] [actions]
+ * `icon` is the product's app-icon glyph (defaults to the N mark).
+ */
+export function header({ product, subtitle = '', version = '', actionsHtml = '', compact = false, icon = 'N' } = {}) {
   return `<header class="nq-header${compact ? ' nq-header--compact' : ''}">`
-    + `<div class="nq-header__brand"><span class="nq-mark" aria-hidden="true">N</span>`
+    + `<div class="nq-header__brand"><span class="nq-mark" aria-hidden="true">${e(icon)}</span>`
     + `<div class="nq-header__text"><span class="nq-eyebrow">Nuvriqo</span>`
     + `<h1 class="nq-header__title">${e(product)}</h1>`
     + (subtitle ? `<p class="nq-header__subtitle">${e(subtitle)}</p>` : '')
@@ -71,4 +74,30 @@ export function footer({ product, version = '' } = {}) {
   return `<footer class="nq-footer"><span>Nuvriqo ${e(product)}</span>`
     + (version ? `<span aria-hidden="true">·</span><span>v${e(String(version).replace(/^v/, ''))}</span>` : '')
     + `</footer>`;
+}
+
+/**
+ * Sidebar for full-page apps (jira:globalPage). Wrap the page as
+ * <div class="nq-shell">${sidebar(...)}<main class="nq-main">…</main></div>.
+ * items = [{ id, label, icon }]. Wire clicks with data-nq-nav.
+ */
+export function sidebar({ product, items = [], activeId, bottomHtml = '' } = {}) {
+  return `<aside class="nq-sidebar"><div class="nq-brand"><span class="nq-mark" aria-hidden="true">N</span>`
+    + `<div><strong class="nq-brand__name">Nuvriqo</strong><small class="nq-brand__product">${e(product)}</small></div></div>`
+    + `<nav class="nq-nav">`
+    + items.map(({ id, label, icon }) => `<button type="button" class="nq-nav-item" data-nq-nav="${e(id)}"${id === activeId ? ' aria-current="page"' : ''}>`
+      + (icon ? `<span class="nq-nav-item__icon" aria-hidden="true">${e(icon)}</span>` : '') + `<span>${e(label)}</span></button>`).join('')
+    + `</nav>`
+    + (bottomHtml ? `<div class="nq-sidebar__bottom">${bottomHtml}</div>` : '')
+    + `</aside>`;
+}
+
+/** KPI tile. kind: 'info' | 'success' | 'warning' | 'danger' */
+export function kpi({ label, value, hint = '', icon = '', kind = 'info' } = {}) {
+  const cls = kind && kind !== 'info' ? ` nq-kpi__icon--${e(kind)}` : '';
+  return `<div class="nq-kpi">`
+    + (icon ? `<span class="nq-kpi__icon${cls}" aria-hidden="true">${e(icon)}</span>` : '')
+    + `<div><small class="nq-kpi__label">${e(label)}</small><strong class="nq-kpi__value">${e(value)}</strong>`
+    + (hint ? `<em class="nq-kpi__hint">${e(hint)}</em>` : '')
+    + `</div></div>`;
 }

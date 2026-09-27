@@ -9,8 +9,8 @@
  * Apps must not hardcode colours. If a value is missing here, add it here.
  */
 :root {
-  /* Typography: Atlassian's system stack, so apps look native in Jira. */
-  --nq-font: var(--ds-font-family-body, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, system-ui, "Helvetica Neue", sans-serif);
+  /* Typography: Inter where installed (v1), else Atlassian's system stack. No web fonts are loaded. */
+  --nq-font: Inter, var(--ds-font-family-body, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, system-ui, "Helvetica Neue", sans-serif);
   --nq-font-mono: var(--ds-font-family-code, ui-monospace, Menlo, "Segoe UI Mono", "Ubuntu Mono", monospace);
   --nq-font-size: 14px;
   --nq-font-size-sm: 12px;
@@ -83,29 +83,55 @@
   --nq-icon: var(--ds-icon, #44546f);
   --nq-icon-subtle: var(--ds-icon-subtle, #626f86);
 
-  /* Elevation */
+  /* Elevation (Nuvriqo UI System v1 card shadow in light; Atlassian raised in dark) */
+  --nq-shadow-card: 0 1px 2px #091e4214, 0 4px 12px #091e420a;
   --nq-shadow-raised: var(--ds-shadow-raised, 0 1px 1px #091e4240, 0 0 1px #091e424f);
-  --nq-shadow-overlay: var(--ds-shadow-overlay, 0 8px 12px #091e4226, 0 0 1px #091e424f);
+  --nq-shadow-overlay: var(--ds-shadow-overlay, 0 10px 32px #091e422e, 0 0 1px #091e424f);
 
-  /* Shape and spacing (Atlassian 8px grid) */
-  --nq-radius-sm: 3px;
-  --nq-radius: 6px;
-  --nq-radius-lg: 10px;
+  /* v1 control border: lighter than Atlassian's input border */
+  --nq-border-strong: #b3bac5;
+  --nq-focus-ring: color-mix(in srgb, var(--nq-border-focused) 30%, transparent);
+
+  /* Shape and spacing (8px grid, Nuvriqo UI System v1 radii) */
+  --nq-radius-sm: 6px;
+  --nq-radius: 8px;
+  --nq-radius-md: 10px;
+  --nq-radius-lg: 14px;
   --nq-space-050: 4px;
   --nq-space-100: 8px;
   --nq-space-150: 12px;
   --nq-space-200: 16px;
+  --nq-space-250: 20px;
   --nq-space-300: 24px;
   --nq-space-400: 32px;
-  --nq-page-width: 1180px;
-  --nq-page-width-narrow: 760px;
+  --nq-page-width: 1520px;
+  --nq-page-width-narrow: 1050px;
+  --nq-sidebar-width: 220px;
 
   /*
-   * Nuvriqo accent: the "N" mark only. These and --nq-accent-default are the
-   * only fixed colours — the rest of the app stays on Atlassian tokens.
+   * Control metrics. App-specific legacy buttons/inputs should use these
+   * (not literal sizes) so they follow the kit when it changes.
    */
-  --nq-mark-from: #58b6ff;
-  --nq-mark-to: #1175d5;
+  --nq-control-height: 40px;
+  --nq-control-height-sm: 32px;
+  --nq-btn-radius: var(--nq-radius);
+  --nq-btn-padding: 0 14px;
+  --nq-btn-weight: 700;
+
+  /* Type scale */
+  --nq-title-size: 30px;
+  --nq-title-tracking: -0.025em;
+  --nq-card-title-size: 18px;
+
+  /*
+   * Brand. The only fixed colours: the N logo tile, the product app icon,
+   * and --nq-accent-default. The rest of the UI stays on tokens.
+   */
+  --nq-mark-from: #172b4d;
+  --nq-mark-to: #0c66e4;
+  --nq-app-icon-from: #2684ff;
+  --nq-app-icon-to: #0052cc;
+  --nq-app-icon-glow: 0 8px 22px #0c66e433;
   --nq-mark-text: #ffffff;
 
   /*
@@ -118,4 +144,7 @@
 
 html[data-color-mode="dark"] {
   color-scheme: dark;
+  --nq-shadow-card: var(--ds-shadow-raised, 0 1px 1px #03040480, 0 0 1px #03040480);
+  --nq-border-strong: var(--ds-border-input, #738496);
+  --nq-app-icon-glow: none;
 }

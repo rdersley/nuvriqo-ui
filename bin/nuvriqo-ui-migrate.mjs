@@ -92,7 +92,7 @@ function tokenFor(kind, colour) {
   if (kind === 'border') {
     if (c.a < 1) return 'border';
     if (c.white) return 'surface';
-    if (c.family === 'neutral') return c.l >= 0.6 ? 'border' : 'border-input';
+    if (c.family === 'neutral') return c.l >= 0.8 ? 'border' : c.l >= 0.6 ? 'border-strong' : 'border-input';
     return c.l >= 0.85 ? 'border' : BORDER[c.family];
   }
   return null;
@@ -120,7 +120,7 @@ function migrateShadow(value, changes, left) {
   if (ring) return value.replace(COLOR, (c) => { changes.push([c, 'border-bold']); return 'var(--nq-border-bold)'; });
   if (/inset/.test(value)) { colours.forEach((c) => left.push(c)); return value; }
   // Strong shadows are dialogs/popovers; soft ones are cards.
-  const token = Math.max(...colours.map((c) => parse(c).a)) >= 0.15 ? 'shadow-overlay' : 'shadow-raised';
+  const token = Math.max(...colours.map((c) => parse(c).a)) >= 0.15 ? 'shadow-overlay' : 'shadow-card';
   changes.push([colours.join(' '), token]);
   return `var(--nq-${token})`;
 }

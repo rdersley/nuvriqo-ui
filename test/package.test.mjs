@@ -26,7 +26,7 @@ test('every --nq-* variable used is defined in tokens.css', () => {
 test('every nq-* class emitted by the helpers exists in the stylesheet', () => {
   const sources = read('src/js/html.js') + read('src/react/index.js');
   const classes = new Set(sources.match(/nq-[a-z0-9]+(?:__[a-z0-9]+)?(?:--[a-z0-9]+)?/g));
-  for (const c of ['nq-notice--', 'nq-lozenge--', 'nq-btn--']) classes.delete(c);
+  for (const c of ['nq-notice--', 'nq-lozenge--', 'nq-btn--', 'nq-kpi__icon--']) classes.delete(c);
   for (const c of classes) assert.ok(dist.includes(`.${c}`), `.${c} missing from CSS`);
 });
 
