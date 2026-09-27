@@ -49,3 +49,14 @@ test('checker flags raw colours but not var() fallbacks', () => {
     assert.match(out, /3 hardcoded/);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });
+
+test('migrate maps page backgrounds to the sunken surface', () => {
+  const dir = fs.mkdtempSync('test/tmp-');
+  try {
+    fs.writeFileSync(`${dir}/a.css`, ':root{color:#172b4d;background:#f4f5f7}.chip{background:#f4f5f7}');
+    execFileSync(process.execPath, ['bin/nuvriqo-ui-migrate.mjs', '--write', dir], { encoding: 'utf8' });
+    const out = fs.readFileSync(`${dir}/a.css`, 'utf8');
+    assert.ok(out.includes(':root{color:var(--nq-text);background:var(--nq-surface-sunken)}'), out);
+    assert.ok(out.includes('.chip{background:var(--nq-bg-neutral)}'), out);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});

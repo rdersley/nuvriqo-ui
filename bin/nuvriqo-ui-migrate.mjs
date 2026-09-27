@@ -73,8 +73,10 @@ const BG_SUBTLER = { brand: 'bg-information-subtler', success: 'bg-success-subtl
 const BG_BOLD = { brand: 'bg-brand', success: 'bg-success-bold', danger: 'bg-danger-bold', warning: 'bg-warning-bold' };
 const BORDER = { brand: 'border-brand', success: 'border-success', danger: 'border-danger', warning: 'border-warning', discovery: 'border-information' };
 
-function tokenFor(kind, colour) {
+function tokenFor(kind, colour, selector = '') {
   const c = parse(colour);
+  // Page backgrounds (:root, html, body, #root) are the sunken surface, not a neutral tint.
+  if (kind === 'bg' && /(^|,)\s*(:root|html|body|#root)\s*(,|$)/.test(selector) && c.a >= 1 && c.l >= 0.85) return c.white ? 'surface' : 'surface-sunken';
   if (kind === 'text') {
     if (c.a < 1) return null;
     if (c.white) return 'text-inverse';
@@ -149,7 +151,7 @@ export function migrateCss(css) {
       const replaced = value.replace(COLOR, (c) => {
         if (allow.has(norm(c))) return c;
         if (kind === 'text' && fixedBg && parse(c).l > 0.9) return c;
-        const token = tokenFor(kind, c);
+        const token = tokenFor(kind, c, selector.trim());
         if (!token) { left.push(c); return c; }
         changes.push([c, token]);
         return `var(--nq-${token})`;
