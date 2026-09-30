@@ -70,6 +70,7 @@ The look is **Nuvriqo UI System v1** (reference: Asset Manager). It uses Atlassi
 | Tabular data | `nq-table-wrap > table.nq-table` | Div grids pretending to be tables |
 | Headline numbers | `nq-kpis > nq-kpi` (icon, label, value, hint) on dashboards. `nq-stats > nq-stat--*` (accent bar) for compact rows. | Custom KPI cards |
 | Forms | `nq-field > nq-label + nq-input|nq-select|nq-textarea + nq-help|nq-error-text` in `nq-grid--2` | Placeholder-as-label |
+| Long settings sections the user can hide | `details.nq-disclosure > summary.nq-disclosure__summary + .nq-disclosure__body` (React `<Disclosure>`, HTML `disclosure()`). Put a short count such as "3 selected" in `nq-disclosure__meta` so a closed section still says what's inside. | Buttons with ▼/▶ text, or show/hide state you manage yourself |
 | Save for the whole page | `nq-actionbar` with `nq-save-state` (`is-dirty` / `is-saved`) | Save buttons scattered in every card |
 | Confirmation / detail | `nq-overlay > nq-dialog` | New browser windows |
 

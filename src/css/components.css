@@ -395,6 +395,47 @@
 .nq-notice--discovery { background: var(--nq-bg-discovery); border-color: var(--nq-border-information); }
 .nq-notice--discovery::before { content: "?"; background: var(--nq-text-discovery); }
 
+/* ---------- Disclosure (collapsible section on native <details>) ----------
+   <details class="nq-disclosure" open>
+     <summary class="nq-disclosure__summary">Title <span class="nq-disclosure__meta">3 selected</span></summary>
+     <div class="nq-disclosure__body">…</div>
+   </details>
+   The chevron is drawn with borders, so there are no ▼/▶ glyphs to maintain. */
+.nq-disclosure {
+  background: var(--nq-surface-raised);
+  border: 1px solid var(--nq-border);
+  border-radius: var(--nq-radius-md);
+  margin-bottom: var(--nq-space-150);
+}
+.nq-disclosure__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--nq-space-100);
+  padding: var(--nq-space-150) var(--nq-space-200);
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  border-radius: var(--nq-radius-md);
+}
+.nq-disclosure__summary::-webkit-details-marker { display: none; }
+.nq-disclosure__summary::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-right: 2px;
+  border-right: 2px solid var(--nq-text-subtle);
+  border-bottom: 2px solid var(--nq-text-subtle);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+.nq-disclosure[open] > .nq-disclosure__summary::before { transform: rotate(45deg); }
+.nq-disclosure__summary:hover { background: var(--nq-surface-hovered); }
+.nq-disclosure__summary:focus-visible { outline: 2px solid var(--nq-border-focused); outline-offset: 2px; }
+.nq-disclosure__meta { margin-left: auto; font-weight: 400; font-size: var(--nq-font-size-sm); color: var(--nq-text-subtlest); }
+.nq-disclosure__body { padding: 0 var(--nq-space-200) var(--nq-space-200); }
+.nq-disclosure[open] > .nq-disclosure__summary { border-radius: var(--nq-radius-md) var(--nq-radius-md) 0 0; }
+
 /* ---------- Empty state ---------- */
 .nq-empty { text-align: center; padding: 42px var(--nq-space-200); color: var(--nq-text-subtlest); }
 .nq-empty__title { display: block; margin: 0 0 6px; font-size: 20px; font-weight: 700; color: var(--nq-text); }

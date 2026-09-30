@@ -51,6 +51,14 @@ export function notice(kind, message, title = '') {
     + `${e(message)}</div></div>`;
 }
 
+/** Collapsible section. `bodyHtml` is trusted markup; `title` and `meta` are escaped. */
+export function disclosure({ title, meta = '', bodyHtml = '', open = false } = {}) {
+  return `<details class="nq-disclosure"${open ? ' open' : ''}>`
+    + `<summary class="nq-disclosure__summary">${e(title)}`
+    + (meta ? `<span class="nq-disclosure__meta">${e(meta)}</span>` : '')
+    + `</summary><div class="nq-disclosure__body">${bodyHtml}</div></details>`;
+}
+
 export function emptyState({ title, text = '', actionsHtml = '', compact = false } = {}) {
   return `<div class="nq-empty${compact ? ' nq-empty--compact' : ''}">`
     + `<strong class="nq-empty__title">${e(title)}</strong>`

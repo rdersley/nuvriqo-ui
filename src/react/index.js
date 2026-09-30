@@ -48,6 +48,15 @@ export function Card({ title, description, actions, footer, accent = false, chil
     footer ? h('div', { className: 'nq-card__foot' }, footer) : null);
 }
 
+/** Collapsible section. `meta` is a short summary shown on the right, e.g. "3 selected". */
+export function Disclosure({ title, meta, defaultOpen = false, children }) {
+  return h('details', { className: 'nq-disclosure', open: defaultOpen || undefined },
+    h('summary', { className: 'nq-disclosure__summary' },
+      title,
+      meta ? h('span', { className: 'nq-disclosure__meta' }, meta) : null),
+    h('div', { className: 'nq-disclosure__body' }, children));
+}
+
 /** appearance: 'default' | 'primary' | 'subtle' | 'danger' | 'link' */
 export function Button({ appearance = 'default', small = false, className, type = 'button', ...rest }) {
   return h('button', {
