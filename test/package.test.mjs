@@ -38,6 +38,13 @@ test('html helpers escape text', () => {
   assert.ok(html.notice('error', 'x').includes('role="alert"'));
 });
 
+test('disclosure helper escapes title and meta and honours open', () => {
+  const closed = html.disclosure({ title: '<b>Filters</b>', meta: '2 & more', bodyHtml: '<p>x</p>' });
+  assert.ok(closed.startsWith('<details class="nq-disclosure">'));
+  assert.ok(closed.includes('&lt;b&gt;Filters') && closed.includes('2 &amp; more') && closed.includes('<p>x</p>'));
+  assert.ok(html.disclosure({ title: 'x', open: true }).startsWith('<details class="nq-disclosure" open>'));
+});
+
 test('checker flags raw colours but not var() fallbacks', () => {
   const dir = fs.mkdtempSync('test/tmp-');
   try {
